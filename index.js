@@ -3,9 +3,10 @@ const fs = require("fs");
 const { URL } = require("url");
 
 http.createServer((req, res) => {
-    let urlString = "http://" + req.headers.host + req.url;
+    let urlString = "https://" + req.headers.host + req.url;
     let url = new URL(urlString);
-    console.log(url)
+    console.log(url);
+    
     switch(url.pathname){
         case "/":
             fs.readFile("./index.html", (err, data) => {

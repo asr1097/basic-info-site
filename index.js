@@ -1,11 +1,11 @@
 const http = require("http");
 const fs = require("fs");
-const URL = require("url");
+const { URL } = require("url");
 
 http.createServer((req, res) => {
-    
-    let path = req.url;
-    switch(path){
+    let urlString = "http://" + req.headers.host + req.url;
+    let url = new URL(urlString);
+    switch(url.pathname){
         case "/":
             fs.readFile("./index.html", (err, data) => {
                 if(err){console.log(err)}

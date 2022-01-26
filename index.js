@@ -2,10 +2,11 @@ const http = require("http");
 const fs = require("fs");
 const { URL } = require("url");
 
+const port = process.env.PORT || 8080;
+
 http.createServer((req, res) => {
     let urlString = "https://" + req.headers.host + req.url;
     let url = new URL(urlString);
-    console.log(url.pathname)
     
     switch(url.href){
         case `${url.origin}/`:
@@ -53,4 +54,4 @@ http.createServer((req, res) => {
             break;
     }
 
-}).listen(8080);
+}).listen(port);

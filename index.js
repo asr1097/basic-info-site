@@ -5,9 +5,10 @@ const { URL } = require("url");
 http.createServer((req, res) => {
     let urlString = "https://" + req.headers.host + req.url;
     let url = new URL(urlString);
+    console.log(url.pathname)
     
-    switch(url.pathname){
-        case "/":
+    switch(url.href){
+        case `${url.origin}/`:
             fs.readFile("./index.html", (err, data) => {
                 if(err){console.log(err)}
                 else{
@@ -18,7 +19,7 @@ http.createServer((req, res) => {
             });
             break;
 
-        case "/about":
+        case `${url.origin}/about`:
             fs.readFile("./about.html", (err, data) => {
                 if(err){console.log(err)}
                 else{
@@ -29,7 +30,7 @@ http.createServer((req, res) => {
             });
             break;
         
-        case "/contact-me":
+        case `${url.origin}/contact-me`:
             fs.readFile("./contact-me.html", (err, data) => {
                 if(err){console.log(err)}
                 else{
